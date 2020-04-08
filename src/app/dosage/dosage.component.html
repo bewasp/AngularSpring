@@ -6,6 +6,14 @@
       <div class="form-container">
 
         <mat-form-field>
+          <input id="name"
+                 matInput
+                 formControlName="name"
+                 [(ngModel)]="dose.name"
+                 placeholder="Enter your name of medicine" />
+        </mat-form-field>
+
+        <mat-form-field>
           <input id="dailyDose"
                  matInput
                  formControlName="dailyDose"

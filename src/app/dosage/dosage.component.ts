@@ -17,6 +17,9 @@ export class DosageComponent implements OnInit {
 
   ngOnInit() {
     this.doseForm = this.formBuilder.group({
+      'name': [this.dose.name, [
+        Validators.required,
+      ]],
       'dailyDose': [this.dose.dailyDose, [
         Validators.required,
       ]],
@@ -30,7 +33,7 @@ export class DosageComponent implements OnInit {
   }
 
   onDoseSubmit() {
-    alert(this.dose.dailyDose + ' ' + this.dose.doseTimestamp + ' ' + this.dose.numberDose);
+    alert(this.dose.name + ' ' + this.dose.dailyDose + ' ' + this.dose.doseTimestamp + ' ' + this.dose.numberDose);
   }
 
 }
