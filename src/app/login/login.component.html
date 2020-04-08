@@ -2,8 +2,24 @@
   <div class="list-viewer-wrapper">
     <div class="list-header-title">Login</div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onLoginSubmit()" novalidate>
+    <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onDoseSubmit()" novalidate>
       <div class="form-container">
+
+        <mat-form-field>
+          <input id="name"
+                 matInput
+                 formControlName="name"
+                 [(ngModel)]="user.name"
+                 placeholder="Enter your name" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input id="surname"
+                 matInput
+                 formControlName="surname"
+                 [(ngModel)]="user.surname"
+                 placeholder="Enter your surname" />
+        </mat-form-field>
 
         <mat-form-field>
           <input id="email"
@@ -14,19 +30,15 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input id="password"
+          <input id="phone"
                  matInput
-                 formControlName="password"
-                 [(ngModel)]="user.password"
-                 placeholder="Enter your password"
-                 [type]="hide ? 'password':'text'"/>
-          <mat-icon matSuffix (click)="hide = !hide">
-            {{hide ? 'visibility' : 'visibility_off'}}
-          </mat-icon>
+                 formControlName="phone"
+                 [(ngModel)]="user.phone"
+                 placeholder="Enter your phone" />
         </mat-form-field>
 
         <button mat-button type="submit"
-                class="mat-raised-button mat-primary" [disabled]="!loginForm.valid">Login</button>
+                class="mat-raised-button mat-primary" [disabled]="!doseForm.valid">Dosage</button>
       </div>
     </form>
   </div>
