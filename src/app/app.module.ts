@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DosageComponent } from './dosage/dosage.component';
+import { ChartsModule } from 'ng2-charts';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +20,16 @@ import { DosageComponent } from './dosage/dosage.component';
     RegisterComponent,
     HomeComponent,
     NavBarComponent,
-    DosageComponent
+    DosageComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
