@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'The Medicine App';
+
+  getUrl()
+  {
+    return "url('https://image.freepik.com/darmowe-wektory/tlo-medyczne-struktury-molekularnej_115579-408.jpg')";
+  }
+
 }
+

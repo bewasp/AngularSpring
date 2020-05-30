@@ -19,6 +19,13 @@ export class RegisterComponent implements OnInit {
       'name': [this.user.name, [
         Validators.required
       ]],
+      'surname': [this.user.surname, [
+        Validators.required
+      ]],
+      'phone': [this.user.phone, [
+        Validators.required,
+        Validators.pattern('[0-9]{9}')
+      ]],
       'email': [this.user.email, [
         Validators.required,
         Validators.email
@@ -31,8 +38,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onRegisterSubmit(){
-    alert(this.user.name + ' ' + this.user.email + ' ' + this.user.password);
+  onRegisterSubmit() {
+    alert(this.user.name + ' ' + this.user.surname + ' ' + this.user.phone + ' ' + this.user.email + ' ' + this.user.password);
   }
 
 }
