@@ -5,8 +5,8 @@ body {
 }
 
 .spacer {
-  flex-grow: 1;
-}
+   flex-grow: 1;
+ }
 
 .medium-list {
   margin: auto;
