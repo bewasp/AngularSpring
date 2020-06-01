@@ -4,12 +4,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { DosageComponent } from './dosage/dosage.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { DosageComponent } from './components/dosage/dosage.component';
+import {ChartComponent} from './components/chart/chart.component';
+import {HttpClientModule} from '@angular/common/http';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,7 @@ import { DosageComponent } from './dosage/dosage.component';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
     HttpClientModule
   ],
   providers: [],

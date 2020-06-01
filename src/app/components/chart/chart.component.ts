@@ -24,7 +24,7 @@ export class ChartComponent implements OnInit {
   ];
 
   public pieChartLabels = ['medicines taken', 'delayed medication', 'medicines not taken',];
-  public pieChartData = [10, 3, 4,];
+  public pieChartData = [10, 3, 4];
   public pieChartType = 'pie';
 
   constructor() { }

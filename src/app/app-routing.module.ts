@@ -4,7 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import {DosageComponent} from './components/dosage/dosage.component';
-import {ChartComponent} from './chart/chart.component';
+import {ChartComponent} from './components/chart/chart.component';
 
 const routes: Routes = [{
   path: '',
