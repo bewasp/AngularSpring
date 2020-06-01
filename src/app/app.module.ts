@@ -13,7 +13,7 @@ import { DosageComponent } from './components/dosage/dosage.component';
 import {ChartComponent} from './components/chart/chart.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ChartsModule} from 'ng2-charts';
-import {AuthInterceptor} from './services/auth.interceptor';
+import {AuthInterceptor} from './services/auth/auth.interceptor';
 
 @NgModule({
   declarations: [

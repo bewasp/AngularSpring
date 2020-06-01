@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {RegisterModel} from '../models/register.model';
-import {LoginModel} from '../models/login.model';
-import {TokenModel} from '../models/token.model.';
+import {RegisterModel} from '../../models/register.model';
+import {LoginModel} from '../../models/login.model';
+import {TokenModel} from '../../models/token.model.';
 import {map} from 'rxjs/operators';
 import {JwtHelper} from 'angular2-jwt';
 
@@ -11,7 +11,7 @@ import {JwtHelper} from 'angular2-jwt';
 })
 export class UserAccessService {
 
-  url = 'http://127.0.0.1:8080/api';
+  url = 'http://127.0.0.1:8080/api/user';
 
   constructor(private http: HttpClient) { }
 
@@ -23,11 +23,11 @@ export class UserAccessService {
   };
 
   register(client: RegisterModel) {
-    return this.http.post<boolean>(this.url + '/user/register' , client , this.httpOptions);
+    return this.http.post<boolean>(this.url + '/register' , client , this.httpOptions);
   }
 
   loginMethod(client: LoginModel) {
-    return this.http.post(this.url + '/user/login' , client , this.httpOptions)
+    return this.http.post(this.url + '/login' , client , this.httpOptions)
       .pipe(
         map ((result: TokenModel) => {
           if (result && result.token) {
@@ -41,7 +41,7 @@ export class UserAccessService {
   }
 
   logout() {
-    return this.http.delete(this.url + '/user/logout/' + this.currentUser.userId)
+    return this.http.delete(this.url + '/logout/' + this.currentUser.userId)
       .pipe(
         map(() => {
           localStorage.removeItem('token');
