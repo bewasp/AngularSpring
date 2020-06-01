@@ -11,8 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { DosageComponent } from './components/dosage/dosage.component';
 import {ChartComponent} from './components/chart/chart.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ChartsModule} from 'ng2-charts';
+import {AuthInterceptor} from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,13 @@ import {ChartsModule} from 'ng2-charts';
     ChartsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

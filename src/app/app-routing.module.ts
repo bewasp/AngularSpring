@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import {DosageComponent} from './components/dosage/dosage.component';
 import {ChartComponent} from './components/chart/chart.component';
+import {AuthGuard} from './services/auth.guard';
 
 const routes: Routes = [{
   path: '',
@@ -17,10 +18,12 @@ const routes: Routes = [{
   component: LoginComponent
 }, {
   path: 'dose',
-  component: DosageComponent
+  component: DosageComponent,
+  canActivate: [AuthGuard]
 }, {
   path: 'chart',
-  component: ChartComponent
+  component: ChartComponent,
+  canActivate: [AuthGuard]
   }];
 
 @NgModule({

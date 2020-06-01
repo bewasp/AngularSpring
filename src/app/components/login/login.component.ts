@@ -3,6 +3,7 @@ import { LoginModel } from '../../models/login.model';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {UserAccessService} from '../../services/user-access.service';
 import {TokenModel} from '../../models/token.model.';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   result: boolean;
   hide = true;
 
-  constructor(private formBuilder: FormBuilder , private service: UserAccessService) { }
+  constructor(private formBuilder: FormBuilder , private service: UserAccessService, public router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -35,7 +36,9 @@ export class LoginComponent implements OnInit {
   onLoginSubmit() {
     this.service.loginMethod(this.user).subscribe(result => {
       this.result = result;
-      console.log(this.result);
+      if(this.result){
+        this.router.navigate(['/']);;
+      }
     });
   }
 

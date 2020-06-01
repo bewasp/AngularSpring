@@ -4,14 +4,14 @@ import {RegisterModel} from '../models/register.model';
 import {LoginModel} from '../models/login.model';
 import {TokenModel} from '../models/token.model.';
 import {map} from 'rxjs/operators';
+import {JwtHelper} from 'angular2-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAccessService {
 
-  loginUrl = 'http://127.0.0.1:8080/api/login';
-  registerUrl = 'http://127.0.0.1:8080/api/register';
+  url = 'http://127.0.0.1:8080/api';
 
   constructor(private http: HttpClient) { }
 
@@ -23,11 +23,11 @@ export class UserAccessService {
   };
 
   register(client: RegisterModel) {
-    return this.http.post<boolean>(this.registerUrl , client , this.httpOptions);
+    return this.http.post<boolean>(this.url + '/user/register' , client , this.httpOptions);
   }
 
   loginMethod(client: LoginModel) {
-    return this.http.post(this.loginUrl , client , this.httpOptions)
+    return this.http.post(this.url + '/user/login' , client , this.httpOptions)
       .pipe(
         map ((result: TokenModel) => {
           if (result && result.token) {
@@ -38,5 +38,35 @@ export class UserAccessService {
           return false;
         })
       );
+  }
+
+  logout() {
+    return this.http.delete(this.url + '/user/logout/' + this.currentUser.userId)
+      .pipe(
+        map(() => {
+          localStorage.removeItem('token');
+        })
+      );
+  }
+
+  isLoggedIn() {
+    const jwtHelper = new JwtHelper();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return false;
+    }
+    return !(jwtHelper.isTokenExpired(token));
+  }
+
+  get currentUser() {
+    const token = this.getToken();
+    if (!token) {
+      return null;
+    }
+    return new JwtHelper().decodeToken(token);
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
   }
 }
