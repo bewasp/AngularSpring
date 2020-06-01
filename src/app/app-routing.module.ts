@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import {DosageComponent} from './dosage/dosage.component';
+import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import {DosageComponent} from './components/dosage/dosage.component';
+import {ChartComponent} from './components/chart/chart.component';
+import {AuthGuard} from './services/auth/auth.guard';
 
 const routes: Routes = [{
   path: '',
@@ -16,8 +18,13 @@ const routes: Routes = [{
   component: LoginComponent
 }, {
   path: 'dose',
-  component: DosageComponent
-}];
+  component: DosageComponent,
+  canActivate: [AuthGuard]
+}, {
+  path: 'chart',
+  component: ChartComponent,
+  canActivate: [AuthGuard]
+  }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

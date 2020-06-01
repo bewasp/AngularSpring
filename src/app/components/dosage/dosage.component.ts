@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DosageModel } from '../models/dosage.model';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {DosageModel} from '../../models/dosage.model';
+import {CreateDoseService} from '../../services/dose/create-dose.service';
 
 
 @Component({
@@ -13,7 +15,7 @@ export class DosageComponent implements OnInit {
   dose: DosageModel = new DosageModel();
   doseForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private doseService: CreateDoseService) { }
 
   ngOnInit() {
     this.doseForm = this.formBuilder.group({
@@ -26,14 +28,14 @@ export class DosageComponent implements OnInit {
       'doseTimestamp': [this.dose.doseTimestamp, [
         Validators.required,
       ]],
-      'numberDose': [this.dose.numberDose, [
+      'numberDose': [this.dose.doseNumber, [
         Validators.required
       ]]
     });
   }
 
   onDoseSubmit() {
-    alert(this.dose.name + ' ' + this.dose.dailyDose + ' ' + this.dose.doseTimestamp + ' ' + this.dose.numberDose);
+    this.doseService.createClientDose(this.dose).subscribe();
   }
 
 }
