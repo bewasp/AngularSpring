@@ -13,13 +13,14 @@
                  placeholder="Enter your name" />
           </mat-form-field>
 
-          <mat-form-field>
-            <input id="surname"
-                   matInput
-                   formControlName="surname"
-                   [(ngModel)]="user.surname"
-                   placeholder="Enter your surname" />
-          </mat-form-field>
+        <mat-form-field>
+          <input id="surname"
+                 matInput
+                 formControlName="surname"
+                 [(ngModel)]="user.surname"
+                 placeholder="Enter your surname" />
+        </mat-form-field>
+
 
           <mat-form-field>
           <input id="email"
@@ -33,7 +34,7 @@
             <input id="phone"
                    matInput
                    formControlName="phone"
-                   [(ngModel)]="user.phone"
+                   [(ngModel)]="user.phoneNumber"
                    placeholder="Enter your phone" />
           </mat-form-field>
 
@@ -50,7 +51,8 @@
           </mat-form-field>
 
         <button mat-button type="submit"
-                class="mat-raised-button mat-primary" [disabled]="!registerForm.valid">Register</button>
+                class="mat-raised-button mat-primary" [disabled]="!registerForm.valid"
+                >Register</button>
       </div>
 
     </form>

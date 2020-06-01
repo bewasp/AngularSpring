@@ -1,5 +1,5 @@
 export class DosageModel {
-  name: String;
+  name: string;
   dailyDose: number;
   doseTimestamp: number;
   numberDose: number;
