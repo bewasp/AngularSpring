@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {DosageModel} from '../../models/dosage.model';
-import {CreateDoseService} from '../../services/dose/create-dose.service';
+import {DataService} from '../../services/dose/dataservice.service';
+
 
 
 @Component({
@@ -15,7 +16,7 @@ export class DosageComponent implements OnInit {
   dose: DosageModel = new DosageModel();
   doseForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private doseService: CreateDoseService) { }
+  constructor(private formBuilder: FormBuilder, private doseService: DataService) { }
 
   ngOnInit() {
     this.doseForm = this.formBuilder.group({

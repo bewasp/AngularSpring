@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LoginModel } from '../../models/login.model';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {UserAccessService} from '../../services/auth/user-access.service';
-import {TokenModel} from '../../models/token.model.';
 import {Router} from '@angular/router';
 
 @Component({
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
       'password': [this.user.password, [
         Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(30)
+        Validators.maxLength(20)
       ]]
     });
   }

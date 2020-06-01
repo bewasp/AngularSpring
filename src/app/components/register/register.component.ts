@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       'password': [this.user.password, [
         Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(30)
+        Validators.maxLength(20)
       ]]
     });
   }
@@ -43,9 +43,9 @@ export class RegisterComponent implements OnInit {
   onRegisterSubmit(){
     this.service.register(this.user).subscribe(result => {
       this.result = result;
-      if(this.result){
+      if (this.result) {
         alert('Registration success, now you can login!');
-      }else{
+      } else{
         alert('This email is already used');
       }
       console.log(this.result);

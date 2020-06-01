@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <button mat-button routerLink="/">Home</button>
-    <button mat-button routerLink="/dose" *ngIf="authService.isLoggedIn()">Dosage</button>
+    <button mat-button routerLink="/dose" *ngIf="authService.isLoggedIn()">Add dosage</button>
     <button mat-button routerLink="/chart" *ngIf="authService.isLoggedIn()">Chart of dosage</button>
-
+    <button mat-button routerLink="/medicines" *ngIf="authService.isLoggedIn()">Your medicines</button>
     <span class="spacer"></span>
     <button mat-button routerLink="/login" *ngIf="!authService.isLoggedIn()">Login</button>
     <button mat-button routerLink="/register" *ngIf="!authService.isLoggedIn()">Register</button>

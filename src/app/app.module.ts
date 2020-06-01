@@ -14,6 +14,8 @@ import {ChartComponent} from './components/chart/chart.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ChartsModule} from 'ng2-charts';
 import {AuthInterceptor} from './services/auth/auth.interceptor';
+import { MedicinesComponent } from './components/medicines/medicines.component';
+import { MedicineComponent } from './components/medicine/medicine.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {AuthInterceptor} from './services/auth/auth.interceptor';
     HomeComponent,
     NavBarComponent,
     DosageComponent,
-    ChartComponent
+    ChartComponent,
+    MedicinesComponent,
+    MedicineComponent
   ],
   imports: [
     BrowserModule,
