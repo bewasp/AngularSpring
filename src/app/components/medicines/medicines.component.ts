@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../../services/dose/dataservice.service';
 
 @Component({
   selector: 'app-medicines',
@@ -6,11 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./medicines.component.css']
 })
 export class MedicinesComponent implements OnInit {
-  medicines: any;
+  public medicines: any;
 
-  constructor() { }
+  constructor(private service: DataService) { }
 
   ngOnInit() {
+    this.getMedicines();
   }
 
+  getMedicines() {
+    this.service.getMedicines().subscribe(response => {
+      this.medicines = response;
+    });
+  }
 }

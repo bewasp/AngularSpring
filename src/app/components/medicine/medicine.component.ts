@@ -1,4 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {DataService} from '../../services/dose/dataservice.service';
+import {DosageModel} from '../../models/dosage.model';
+import {Router} from '@angular/router';
+import {ClientCuresService} from '../../services/client-cures.service';
 
 @Component({
   selector: 'app-medicine',
@@ -12,9 +16,31 @@ export class MedicineComponent implements OnInit {
   @Input() doseTimestamp: number;
   @Input() doseNumber: number;
 
-  constructor() { }
+  dosageModel: DosageModel;
 
-  ngOnInit() {
+  constructor(private service: DataService, private router: Router, private serviceCure: ClientCuresService) {
+
   }
 
+  ngOnInit() {
+    this.dosageModel = new DosageModel();
+    this.dosageModel.name = this.name;
+    this.dosageModel.dailyDose = this.dailyDose;
+    this.dosageModel.doseTimestamp = this.doseTimestamp;
+    this.dosageModel.doseNumber = this.doseNumber;
+  }
+
+  deleteMedicine() {
+    this.service.deleteDose(this.dosageModel).subscribe(() => {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate(['/medicines']);
+    });
+  }
+
+  acceptMedicine() {
+    this.serviceCure.acceptDose(this.dosageModel).subscribe(response => {
+      console.log(response);
+    });
+  }
 }

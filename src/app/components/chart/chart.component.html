@@ -5,3 +5,11 @@
           [chartType]="pieChartType"
           [colors]="colors"></canvas>
 </div>
+
+<div *ngIf="stats !== null">
+  <div *ngFor="let i of stats.report">
+    <mat-list>
+      <mat-list-item>{{i.acceptedDose}} {{i.date}} {{i.name}}</mat-list-item>
+    </mat-list>
+  </div>
+</div>

@@ -37,6 +37,7 @@ export class DosageComponent implements OnInit {
 
   onDoseSubmit() {
     this.doseService.createClientDose(this.dose).subscribe();
+    alert('Medicine added');
   }
 
 }

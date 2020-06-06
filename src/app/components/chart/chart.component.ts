@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Color} from 'ng2-charts';
+import {ClientCuresService} from '../../services/client-cures.service';
+import {ClientInfoModel} from '../../models/client-info.model';
 
 @Component({
   selector: 'app-chart',
@@ -7,6 +9,8 @@ import {Color} from 'ng2-charts';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
+
+  public stats: ClientInfoModel = null;
 
   public colors: Color[] = [
     {
@@ -24,13 +28,19 @@ export class ChartComponent implements OnInit {
   ];
 
   public pieChartLabels = ['medicines taken', 'delayed medication', 'medicines not taken'];
-  public pieChartData = [10, 3, 4];
+  public pieChartData = [0, 0, 0];
   public pieChartType = 'pie';
 
-  constructor() { }
+  constructor(private service: ClientCuresService) { }
 
   ngOnInit() {
+    this.getStats();
   }
 
-
+  getStats() {
+    this.service.getStats().subscribe((response: ClientInfoModel) => {
+      this.stats = response;
+      this.pieChartData = [this.stats.info.acceptedDose, this.stats.info.delayedDose, this.stats.info.declinedDose];
+    });
+  }
 }

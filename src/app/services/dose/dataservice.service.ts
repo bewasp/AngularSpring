@@ -29,10 +29,14 @@ export class DataService {
   deleteDose(dose: DosageModel) {
     const options = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'data': JSON.stringify(dose)
-      })
+        'Content-Type':  'application/json'
+      }),
+      body: dose
     };
     return this.http.delete(this.url + this.auth.currentUser.userId + '/delete', options);
+  }
+
+  getMedicines() {
+    return this.http.get(this.url + this.auth.currentUser.userId + '/allCures');
   }
 }
