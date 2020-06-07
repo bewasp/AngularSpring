@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {RegisterModel} from '../../models/register.model';
 import {LoginModel} from '../../models/login.model';
-import {TokenModel} from '../../models/token.model.';
+import {TokenModel} from '../../models/token.model';
 import {map} from 'rxjs/operators';
 import {JwtHelper} from 'angular2-jwt';
 
