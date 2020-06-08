@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   result: boolean;
   hide = true;
 
-  constructor(private formBuilder: FormBuilder , private service: UserAccessService, public router: Router) { }
+  constructor(private formBuilder: FormBuilder , private service: UserAccessService, private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
   onLoginSubmit() {
     this.service.loginMethod(this.user).subscribe(result => {
       this.result = result;
-      if(this.result){
-        this.router.navigate(['/']);;
+      if(this.result) {
+        this.router.navigate(['/']);
       }
     });
   }

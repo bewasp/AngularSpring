@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegisterModel} from '../../models/register.model';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {UserAccessService} from '../../services/auth/user-access.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
   result: boolean;
   hide = true;
 
-  constructor(private formBuilder: FormBuilder , private service: UserAccessService) { }
+  constructor(private formBuilder: FormBuilder , private service: UserAccessService, private router: Router) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -45,11 +46,11 @@ export class RegisterComponent implements OnInit {
       this.result = result;
       if (this.result) {
         alert('Registration success, now you can login!');
-      } else{
+        this.router.navigate(['/login']);
+      } else {
         alert('This email is already used');
       }
       console.log(this.result);
     });
   }
-
 }
