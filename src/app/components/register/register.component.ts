@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterModel} from '../models/register.model';
+import { RegisterModel} from '../../models/register.model';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {UserAccessService} from '../../services/auth/user-access.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +12,10 @@ import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 export class RegisterComponent implements OnInit {
   user: RegisterModel = new RegisterModel();
   registerForm: FormGroup;
+  result: boolean;
   hide = true;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder , private service: UserAccessService, private router: Router) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -22,7 +25,7 @@ export class RegisterComponent implements OnInit {
       'surname': [this.user.surname, [
         Validators.required
       ]],
-      'phone': [this.user.phone, [
+      'phone': [this.user.phoneNumber, [
         Validators.required,
         Validators.pattern('[0-9]{9}')
       ]],
@@ -33,13 +36,21 @@ export class RegisterComponent implements OnInit {
       'password': [this.user.password, [
         Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(30)
+        Validators.maxLength(20)
       ]]
     });
   }
 
-  onRegisterSubmit() {
-    alert(this.user.name + ' ' + this.user.surname + ' ' + this.user.phone + ' ' + this.user.email + ' ' + this.user.password);
+  onRegisterSubmit(){
+    this.service.register(this.user).subscribe(result => {
+      this.result = result;
+      if (this.result) {
+        alert('Registration success, now you can login!');
+        this.router.navigate(['/login']);
+      } else {
+        alert('This email is already used');
+      }
+      console.log(this.result);
+    });
   }
-
 }
